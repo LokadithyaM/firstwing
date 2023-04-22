@@ -3,45 +3,56 @@ import java.util.Scanner;
 
 class setup{
     int x;
-    int e[]={1,2,3,4,5,6};
     private String a ="JAVA";
     private String b ="Trojan";
     private String c ="google";
+ 
     ArrayList<String> my_list = new ArrayList<String>();
-         
 
-     private void setting_up(){
+     void add(){
          my_list.add(a);
          my_list.add(b);
-         my_list.add(c);
-         System.out.println(my_list);
+         my_list.add(c);  
     }
-    String verify(int a){
+        
+    String verify(int ch){
+        if(ch==my_list.indexOf(a)){
+            my_list.remove(a);
+            return "Hit1";
+        }
+        if(ch==my_list.indexOf(b)){
+            my_list.remove(b);
+            return "Hit2";
+        }
+        if(ch==my_list.indexOf(c)){
+            my_list.remove(c);
+            return "Hit3";
+        }
         return null;
     }
-    void caller(){
-        setting_up();
-    }
+    
     
 }
 public class prototype1{
         public static void main(String args[]){
             int i=1;
-        Scanner sc = new Scanner(System.in);
+            Scanner sc = new Scanner(System.in);
         
-        setup s = new setup();
-        s.caller();
+            setup s = new setup();
+            
+            s.add();
+                do{
+                    System.out.print("Your guess: ");
+                    int a = sc.nextInt();
+                    String y = s.verify(a);
 
+                    if(y!=null){
+                        System.out.println("Success "+y);
+                    }else{
+                        System.out.println("Try again");
+                    }
+                    i++;
+            }while(i>=0);
 
-        while(i>0){
-            System.out.print("Your guess: ");
-            int a = sc.nextInt();
-            String y = s.verify(a);
-            if(y=="Hit"){
-                System.out.println("You got that right");
-            }
-            i++;
-        }
-        
     }
 }
